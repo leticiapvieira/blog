@@ -128,4 +128,5 @@ MAILERS = {
     },
 }
 
+# Usa o model personalizado para o usuário
 AUTH_USER_MODEL = 'blog.User'

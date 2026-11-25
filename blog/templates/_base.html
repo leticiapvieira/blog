@@ -1,14 +1,14 @@
 {# blog\templates\_base.html #}
+{% load static %}
 <!DOCTYPE html>
-{% load static %} {# ← Carrega os arquivos estáticos no template #}
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {# ← Carrega as folhas de estilo globais #}
-    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" > {# ← Link do `favicon` #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
     <title>Blog</title>
 </head>
 <body data-bs-theme="light" class="px-2 min-vh-100 d-flex flex-column">
@@ -27,7 +27,7 @@
                             <li><a class="dropdown-item" href="#about_author">Sobre o autor</a></li>
                             <li><a class="dropdown-item" href="#policies">Políticas de privacidade</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'contacts' %}	">Faça contato</a></li>
+                            <li><a class="dropdown-item" href="{% url 'contacts' %}">Faça contato</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -45,17 +45,18 @@
             <h1 class="d-flex align-items-center gap-3 justify-content-center"><i class="bi bi-bootstrap"></i><span>Blog</span></h1>
         </div>
     </header>
+ 
+<main class="container d-flex flex-column flex-md-row p-0 flex-grow-1 gap-3">
+    <div class="main-article-section bg-light p-3 flex-fill flex-grow-1">
+        {% block content %}{% endblock %}
+    </div>
 
-    <main class="container d-flex flex-column flex-md-row p-0 flex-grow-1">
-        <div class="main-article-section bg-light p-3 flex-fill flex-grow-1">
-            {% block content %}{% endblock %}
-        </div>
-            {# Esse trecho não funciona de `'show_aside': False` na view #}
-            {% if show_aside %}
-        <div class="main-aside p-3 bg-dark-subtle">
-            {% block aside %}{% endblock %}
-        </div>
-            {% endif %}
+    {# Esse trecho não funciona se `'show_aside': False` na view #}
+    {% if show_aside %}
+    <div class="main-aside p-3 bg-dark-subtle">
+        {% block aside %}{% endblock %}
+    </div>
+    {% endif %}
 </main>
 
     <footer class="container bg-dark text-light rounded-top">
@@ -83,7 +84,7 @@
                 <nav class="d-flex flex-column lh-lg">
                     <a href="#about_site"><i class="bi bi-patch-question-fill"></i> <span>O que somos</span></a>
                     <a href="#about_author"><i class="bi bi-person-badge-fill"></i> <span>Quem somos</span></a>
-                    <a href="{% url 'contacts' %}	"><i class="bi bi-chat-dots-fill"></i> <span>Faça Contato</span></a>
+                    <a href="{% url 'contacts' %}"><i class="bi bi-chat-dots-fill"></i> <span>Faça Contato</span></a>
                     <a href="#policies"><i class="bi bi-person-lock"></i> <span>Sua privacidade</span></a>
                 </nav>
             </div>
