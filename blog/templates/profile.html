@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 {% load static %}
- 
+
 {% block content %}
 {% static 'img/anonimous.png' as default_image %}
 <section>
@@ -22,18 +22,27 @@
         </div>
     </div>
 </section>
- 
+
 <hr>
+
 <div class="text-center">
+
     <form method="post" action="{% url 'logout' %}">
+
         {% csrf_token %}
+
         <button type="submit" class="btn btn-warning">
+
             <i class="bi bi-box-arrow-right"></i> Sair / Logout
+
         </button>
+
     </form>
+
 </div>
+
 <hr>
- 
+
 <section>
     <h3 class="mb-4">Suas Postagens</h3>
     <div class="row mt-3">
@@ -56,5 +65,5 @@
     </div>
 </section>
 {% endblock %}
- 
+
 {% block aside %}{% endblock %}
